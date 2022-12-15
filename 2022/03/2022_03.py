@@ -1,19 +1,20 @@
 score = 0
 with open("input.txt") as file:
-    for line in file:
-        n = len(line)
-        # print("Line:", line)
-        d_1 = set(line[: n // 2])
-        d_2 = set(line[n // 2 :])
-        for common_element in d_1 & d_2:
-            if "a" <= common_element <= "z":
-                score += ord(common_element) - ord("a") + 1
-            elif "A" <= common_element <= "Z":
+    try:
+        while 1:
+            l_1 = set(file.readline().strip())
+            l_2 = set(file.readline().strip())
+            l_3 = set(file.readline().strip())
+            # print(l_1, l_2, l_3)
+            badge_element = list(l_1.intersection(l_2, l_3))[0]
+            # print("badge_element", badge_element)
+            if "a" <= badge_element <= "z":
+                score += ord(badge_element) - ord("a") + 1
+            elif "A" <= badge_element <= "Z":
                 score += 26
-                score += ord(common_element) - ord("A") + 1
-            # print(common_element)
-        # print(d_1)
-        # print(d_2)
-        # print("Score:", score)
-        # break
-print(score)
+                score += ord(badge_element) - ord("A") + 1
+            # break
+    except:
+        pass
+    finally:
+        print(score)
